@@ -15,6 +15,11 @@ var data = {
     '2': 'join',
     '3': 'eat'
   },
+  data0: {
+    '1': {
+      '1': 'water'
+    }
+  },
   data1: {
     '1': {
       '2': {
@@ -32,6 +37,11 @@ var data = {
     }
   }
 };
+describe("three arguments test", function () {
+  it("The result should eql { data1: 'Edison', data2: 'drink', data3: 'water'}", function () {
+    serialize(data.data0, data.person, data.action).should.eql({data1: 'Edison', data2: 'drink', data3: 'water'});
+  });
+});
 describe("four arguments test", function () {
   it("The result should eql { data1: 'Edison', data2: 'tomorrow', data3: 'eat',data4: 'apple'}", function () {
     serialize(data.data1, data.person, data.date, data.action).should.eql({

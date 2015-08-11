@@ -4,7 +4,9 @@
 
 [![NPM](https://nodei.co/npm/dynamic-json.png?mini=true)](https://nodei.co/npm/dynamic-json/)
 
-Serialize dynamic json data.[中文说明](cn.md)
+Serialize dynamic json data. 
+
+[中文说明](cn.md)
 
 ## Installation
 
@@ -53,6 +55,11 @@ var data = {
     '2': 'join',
     '3': 'eat'
   },
+  data0: {
+    '1': {
+      '1': 'water'
+    }
+  },
   data1: {
     '1': {
       '2': {
@@ -70,6 +77,8 @@ var data = {
     }
   }
 };
+serialize(data.data0, data.person, data.action);
+//{ data1: 'Edison', data2: 'drink', data3: 'water'}
 serialize(data.data1, data.person, data.date, data.action);
 //{data1: 'Edison',data2: 'tomorrow',data3: 'eat',data4: 'apple'}
 serialize(data.data2, data.person, data.date, data.action, data.person);
@@ -78,6 +87,6 @@ serialize(data.data2, data.person, data.date, data.action, data.person);
 
 ## TODO
 
-...
+deserialize
 
 ### [MIT Licensed](LICENSE)
