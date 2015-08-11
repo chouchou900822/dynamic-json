@@ -1,0 +1,27 @@
+{
+  "name": "dynamic-json",
+  "version": "1.0.0",
+  "description": "serialize dynamic json data",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chouchou900822/dynamic-json.git"
+  },
+  "keywords": [
+    "dynamic",
+    "json"
+  ],
+  "author": "Edison",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chouchou900822/dynamic-json/issues"
+  },
+  "homepage": "https://github.com/chouchou900822/dynamic-json",
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "should": "^7.0.3"
+  }
+}
