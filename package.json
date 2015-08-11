@@ -1,6 +1,6 @@
 {
   "name": "dynamic-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "serialize dynamic json data",
   "main": "index.js",
   "scripts": {
