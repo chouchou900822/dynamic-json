@@ -5,7 +5,7 @@ var _ = require('lodash');
  * @params arguments
  * @returns {{}}
  */
-function serialize() {
+exports.serialize = function () {
   var result = {};
   var num = arguments.length;
   var data = arguments[0];
@@ -32,5 +32,6 @@ var resolve = function (data) {
   })(data);
   return res;
 };
+exports.deserialize = function () {
 
-module.exports = serialize;
+};

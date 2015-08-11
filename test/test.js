@@ -1,6 +1,7 @@
 'use strict';
 require('should');
-var serialize = require('../index');
+var dynamic = require('../index');
+var serialize = dynamic.serialize;
 var data = {
   person: {
     '1': 'Edison',

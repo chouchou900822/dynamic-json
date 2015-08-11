@@ -23,7 +23,8 @@ $ sudo npm install -g mocha
 ## 如何使用
 
 ```js
-var serialize = require('dynamic-json');
+var dynamic = require('dynamic-json');
+var serialize = dynamic.serialize;
 var result = serialize(dynamicJson, json1, json2, ...);
 ```
 
@@ -38,7 +39,8 @@ var result = serialize(dynamicJson, json1, json2, ...);
 ## 例子
 
 ```js
-var serialize = require('../index');
+var dynamic = require('dynamic-json');
+var serialize = dynamic.serialize;
 var data = {
   person: {
     '1': 'Edison',

@@ -25,7 +25,8 @@ $ sudo npm install -g mocha
 ## API
 
 ```js
-var serialize = require('dynamic-json');
+var dynamic = require('dynamic-json');
+var serialize = dynamic.serialize;
 var result = serialize(dynamicJson, json1, json2, ...);
 ```
 
@@ -40,7 +41,8 @@ every json response to every key in `dynamicJson`.
 ## Example
 
 ```js
-var serialize = require('../index');
+var dynamic = require('dynamic-json');
+var serialize = dynamic.serialize;
 var data = {
   person: {
     '1': 'Edison',
