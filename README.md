@@ -1,8 +1,8 @@
 # dynamic-json
 
-[![Build Status](https://travis-ci.org/chouchou900822/moment-format.svg?branch=master)](https://travis-ci.org/chouchou900822/moment-format)
+[![Build Status](https://travis-ci.org/chouchou900822/dynamic-json.svg)](https://travis-ci.org/chouchou900822/dynamic-json)
 
-[![NPM](https://nodei.co/npm/moment-format.png?mini=true)](https://nodei.co/npm/moment-format/)
+[![NPM](https://nodei.co/npm/dynamic-json.png?mini=true)](https://nodei.co/npm/dynamic-json/)
 
 Serialize dynamic json data.[中文说明](cn.md)
 
