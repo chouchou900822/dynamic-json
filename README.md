@@ -29,14 +29,14 @@ serialize
 ```js
 var dynamic = require('dynamic-json');
 var serialize = dynamic.serialize;
-var result = serialize(dynamicJson, json1, json2, ...);
+var result = serialize(dynamicJson, standard);
 ```
 
 deserialize
 
 ```js
 var deserialize = dynamic.deserialize;
-var dynamicJson = serialize(result, json1, json2, ...);
+var dynamicJson = serialize(result, standard);
 ```
 
 ## params
@@ -44,7 +44,7 @@ var dynamicJson = serialize(result, json1, json2, ...);
 `dynamicJson`:
 the dynamic json data you want to serialize.
 
-`json1, json2, ...`:
+`standard`:
 every json response to every key in `dynamicJson`.
 
 `result`:
@@ -56,65 +56,33 @@ the serialize result.
 var dynamic = require('dynamic-json');
 var serialize = dynamic.serialize;
 var deserialize = dynamic.deserialize;
-var data = {
-  person: {
-    '1': 'Edison',
-    '2': 'Jason'
-  },
-  date: {
-    '1': 'today',
-    '2': 'tomorrow'
-  },
-  action: {
-    '1': 'drink',
-    '2': 'join',
-    '3': 'eat'
-  },
-  data0: {
-    '1': {
-      '1': 'water'
-    }
-  },
-  data1: {
-    '1': {
-      '2': {
-        '3': 'apple'
-      }
-    }
-  },
-  data2: {
+var dynamicJson = {
+  '1': {
     '2': {
-      '1': {
-        '2': {
-          '1': 'party'
-        }
-      }
+      '3': 'hello world'
     }
   }
 };
-serialize(data.data0, data.person, data.action);
-//{ data1: 'Edison', data2: 'drink', data3: 'water'}
-deserialize({ data1: 'Edison', data2: 'drink', data3: 'water'}, data.person, data.action)
-//{'1': {'1': 'water'}}
-serialize(data.data1, data.person, data.date, data.action);
-//{data1: 'Edison',data2: 'tomorrow',data3: 'eat',data4: 'apple'}
-deserialize({
-      data1: 'Edison',
-      data2: 'tomorrow',
-      data3: 'eat',
-      data4: 'apple'
-    }, data.person, data.date, data.action);
-//{'1': {'2': {'3': 'apple'}}}
-serialize(data.data2, data.person, data.date, data.action, data.person);
-//{data1: 'Jason',data2: 'today',data3: 'join',data4: 'Edison',data5: 'party'}
-deserialize({
-      data1: 'Jason',
-      data2: 'today',
-      data3: 'join',
-      data4: 'Edison',
-      data5: 'party'
-    }, data.person, data.date, data.action, data.person)
-//{'2': {'1': {'2': {'1': 'party'}}}}
+var standard ={
+  'person': {
+    '1': 'node',
+    '2': 'you',
+    '3': 'I'
+  },
+  'date': {
+    '1': 'yesterday',
+    '2': 'today'
+  },
+  'action': {
+    '1': 'write',
+    '2': 'think',
+    '3': 'say'
+  }
+};
+serialize(dynamicJson, standard);
+//{person: 'node', date: 'today', action: 'say', value: 'hello world'}
+deserialize({person: 'node', date: 'today', action: 'say', value: 'hello world'}, standard)
+//{'1': {'2': {'3': 'hello world'}}}
 ```
 
 ## TODO
