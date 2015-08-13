@@ -1,67 +1,58 @@
 "use strict";
 
-var _ = require('lodash');
-/**
- * @params arguments
- * @returns {{}}
- */
-exports.serialize = function () {
-  var result = {};
-  var num = arguments.length;
-  var data = arguments[0];
-  var keys = resolve(data);
-  var len = keys.length;
-  for (var i = 1; i < num; i++) {
-    var key = keys[i - 1];
-    result['data' + i] = arguments[i][key];
-  }
-  result['data' + len] = keys[len - 1];
+var resolve = function (dynamicJson) {
+  var result = [];
+  (function again(dynamicJson) {
+    if (typeof dynamicJson == 'object') {
+      for (var key in dynamicJson) {
+        result.push(key);
+        again(dynamicJson[key]);
+      }
+    } else {
+      result.push(dynamicJson);
+    }
+  })(dynamicJson);
   return result;
 };
-/**
- *
- * @param data
- * @returns {Array}
- */
-var resolve = function (data) {
-  var res = [];
-  (function again(data) {
-    if (typeof data == 'object') {
-      _.map(data, function (value, key) {
-        res.push(key);
-        again(value);
-      });
-    } else {
-      res.push(data);
-    }
-  })(data);
-  return res;
-};
-exports.deserialize = function () {
-  var keys = [];
-  var num = arguments.length;
-  var data = arguments[0];
-  for (var i = 1; i < num; i++) {
-    for (var key in arguments[i]) {
-      if (arguments[i][key] == data['data' + i]) {
-        keys.push(key);
-      }
-    }
+exports.serialize = function (dynamicJson, standard) {
+  var result = {};
+  var array = resolve(dynamicJson);
+  for (var key in standard) {
+    var value = array.shift();
+    result[key] = standard[key][value];
   }
-  keys.push(data['data' + num]);
-  return solve(keys);
+  result['value'] = array.shift();
+  return result;
 };
-var solve = function (data) {
-  var value = data.pop();
-  function again(value, arr) {
-    if (arr[0]) {
+var solve = function (array) {
+  var value = array.pop();
+
+  function again(value, array) {
+    if (array[0]) {
       var result = {};
-      var key = arr.pop();
+      var key = array.pop();
       result[key] = value;
-      return again(result, arr);
+      return again(result, array);
     } else {
       return value;
     }
   }
-  return again(value, data);
+  return again(value, array);
+};
+
+exports.deserialize = function (result, standard) {
+  var array = [];
+  for (var key in standard) {
+    for (var item in result) {
+      if (key == item) {
+        for (var num in standard[key]) {
+          if (standard[key][num] == result[item]) {
+            array.push(num);
+          }
+        }
+      }
+    }
+  }
+  array.push(result.value);
+  return solve(array);
 };
