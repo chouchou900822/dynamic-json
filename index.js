@@ -1,7 +1,5 @@
 "use strict";
 
-var _ = require('lodash');
-
 var resolve = function (dynamicJson) {
   var result = [];
   (function again(dynamicJson) {
@@ -25,22 +23,6 @@ exports.serialize = function (dynamicJson, standard) {
   }
   result['value'] = array.shift();
   return result;
-};
-var standard = {
-  'person': {
-    '1': 'node',
-    '2': 'you',
-    '3': 'I'
-  },
-  'date': {
-    '1': 'yesterday',
-    '2': 'today'
-  },
-  'action': {
-    '1': 'write',
-    '2': 'think',
-    '3': 'say'
-  }
 };
 var solve = function (array) {
   var value = array.pop();

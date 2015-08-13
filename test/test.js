@@ -32,7 +32,7 @@ describe("serialize test", function () {
   });
 });
 
-describe("deserialize three arguments test", function () {
+describe("deserialize test", function () {
   it("The result should eql  {'1': {'2': {'3': 'hello world'}}}", function () {
     deserialize({person: 'node', date: 'today', action: 'say', value: 'hello world'}, standard).should.eql(
       {
